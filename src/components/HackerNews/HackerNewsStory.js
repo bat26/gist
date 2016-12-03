@@ -3,7 +3,6 @@ import styles from '../NewsList/index.css';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
-import GooglePlaceAutocomplete from 'googlePlaceAutocomplete'
 
 const NewsArticle = (props) => {
 
@@ -20,6 +19,7 @@ const NewsArticle = (props) => {
                 <FlatButton label="More"/>
             </CardActions>
             <CardText expandable={true}>
+                <h1>Hello World</h1>
                 {props.story.by}
             </CardText>
             <CardText expandable={true}>
