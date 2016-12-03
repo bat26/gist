@@ -1,7 +1,7 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {NewsIcon, ProductHuntIcon} from '../Icons';
-import {hackernews, producthunt} from '../../data';
+import {CategoryOneIcon, CategoryTwoIcon, CategoryThreeIcon, ProfileIcon} from '../Icons';
+import {hackernews, producthunt, profile} from '../../data';
 import NewsList from '../NewsList';
 import styles from './index.css';
 
@@ -20,6 +20,10 @@ class News extends React.Component {
                 loaded: false,
             },
             producthunt: {
+                data: [],
+                loaded: false,
+            },
+            profile: {
                 data: [],
                 loaded: false,
             },
@@ -73,7 +77,7 @@ class News extends React.Component {
                 contentContainerClassName={styles.content}
             >
 
-                <Tab icon={<NewsIcon title="General News" />}>
+                <Tab icon={<CategoryOneIcon title="Category One" />}>
                     <h1 className={styles.heading}>
                         General News
                     </h1>
@@ -91,7 +95,7 @@ class News extends React.Component {
                 </Tab>
 
                 <Tab
-                    icon={<ProductHuntIcon title="Product Hunt Tech" />}
+                    icon={<CategoryTwoIcon title="Category Two" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
                 >
@@ -108,6 +112,48 @@ class News extends React.Component {
 
                     <a href="https://www.producthunt.com/tech">
                         Go to Product Hunt Tech
+                    </a>
+                </Tab>
+
+                <Tab
+                    icon={<CategoryThreeIcon title="Category Three" />}
+                    value="producthunt"
+                    onActive={this.handleActiveTab.bind(this)}
+                >
+                    <h1 className={styles.heading}>
+                        Product Hunt Tech
+                    </h1>
+
+                    <NewsList
+                        source="producthunt"
+                        data={this.state.producthunt.data}
+                        loaded={this.state.producthunt.loaded}
+                        className={styles.storiesContainer}
+                    />
+
+                    <a href="https://www.producthunt.com/tech">
+                        Go to Product Hunt Tech
+                    </a>
+                </Tab>
+
+                <Tab
+                    icon={<ProfileIcon title="Profile" />}
+                    value="profile"
+                    onActive={this.handleActiveTab.bind(this)}
+                >
+                    <h1 className={styles.heading}>
+                        GitHub
+                    </h1>
+
+                    <NewsList
+                        source="profile"
+                        data={this.state.producthunt.data}
+                        loaded={this.state.producthunt.loaded}
+                        className={styles.storiesContainer}
+                    />
+
+                    <a href="https://www.github.com">
+                        Go to GitHub.com
                     </a>
                 </Tab>
 
