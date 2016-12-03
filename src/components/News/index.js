@@ -160,7 +160,6 @@ class News extends React.Component {
             </Tabs>
         )
     }
-}
-;
+};
 
 export default News;
