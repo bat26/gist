@@ -85,7 +85,7 @@ class News extends React.Component {
                 className={styles.tabsContainer}
                 contentContainerClassName={styles.content}
             >
-                <Tab icon={<CategoryOneIcon title="Category One" />}>
+                <Tab icon={<GeneralIcon title="General" />}>
                     <h1 className={styles.heading}>
                         General News
                     </h1>
@@ -102,7 +102,7 @@ class News extends React.Component {
                     </a>
                 </Tab>
 
-                <Tab icon={<CategoryTwoIcon title="Category One" />}>
+                <Tab icon={<SportIcon title="Sport" />}>
                     <h1 className={styles.heading}>
                         Sport
                     </h1>
@@ -120,7 +120,7 @@ class News extends React.Component {
                 </Tab>
 
                 <Tab
-                    icon={<CategoryThreeIcon title="Category Two" />}
+                    icon={<PoliticsIcon title="Politics" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
                 >
@@ -141,7 +141,7 @@ class News extends React.Component {
                 </Tab>
 
                 <Tab
-                    icon={<CategoryFourIcon title="Category Three" />}
+                    icon={<TechCrunchIcon title="TechCrunch" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
                 >
