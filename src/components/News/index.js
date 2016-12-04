@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {CategoryOneIcon, CategoryTwoIcon, CategoryThreeIcon, CategoryFourIcon, ProfileIcon} from '../Icons';
+import {GeneralIcon, SportIcon, PoliticsIcon, TechCrunchIcon, ProfileIcon} from '../Icons';
 import {hackernews, producthunt, profile} from '../../data';
 import NewsList from '../NewsList';
 import styles from './index.css';
