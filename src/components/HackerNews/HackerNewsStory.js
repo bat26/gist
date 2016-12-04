@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../NewsList/index.css';
+import styles from './index.css';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
@@ -11,13 +11,9 @@ const NewsArticle = (props) => {
         <Card>
             <CardHeader
                 title={props.story.title}
-                subtitle={props.story.id}
                 actAsExpander={true}
                 showExpandableButton={true}
             />
-            <CardActions>
-                <FlatButton label="More"/>
-            </CardActions>
             <CardText expandable={true}>
                 <h1>Hello World</h1>
                 {props.story.by}
@@ -28,6 +24,9 @@ const NewsArticle = (props) => {
             <CardText expandable={true}>
                 Even more
             </CardText>
+            <CardActions className={styles.actioncard} expandable={true}>
+                 <FlatButton className={styles.button} >Read More</FlatButton>
+            </CardActions>
         </Card>
     );
 

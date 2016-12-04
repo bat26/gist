@@ -85,7 +85,7 @@ class News extends React.Component {
                 className={styles.tabsContainer}
                 contentContainerClassName={styles.content}
             >
-                <Tab icon={<GeneralIcon title="General" />}>
+                <Tab icon={<GeneralIcon title="General" />} value="general">
                     <h1 className={styles.heading}>
                         General News
                     </h1>
@@ -97,12 +97,9 @@ class News extends React.Component {
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://news.ycombinator.com/news?p=2">
-                        Go to Hacker News (page 2)
-                    </a>
                 </Tab>
 
-                <Tab icon={<SportIcon title="Sport" />}>
+                <Tab icon={<SportIcon title="Sport" />} value="sport">
                     <h1 className={styles.heading}>
                         Sport
                     </h1>
@@ -114,14 +111,12 @@ class News extends React.Component {
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://news.ycombinator.com/news?p=2">
-                        Go to Hacker News (page 2)
-                    </a>
+
                 </Tab>
 
                 <Tab
                     icon={<PoliticsIcon title="Politics" />}
-                    value="producthunt"
+                    value="politics"
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
@@ -135,14 +130,11 @@ class News extends React.Component {
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://www.producthunt.com/tech">
-                        Go to Product Hunt Tech
-                    </a>
                 </Tab>
 
                 <Tab
                     icon={<TechCrunchIcon title="TechCrunch" />}
-                    value="producthunt"
+                    value="techcrunch"
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
@@ -156,9 +148,6 @@ class News extends React.Component {
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://www.producthunt.com/tech">
-                        Go to Product Hunt Tech
-                    </a>
                 </Tab>
 
                 <Tab
@@ -177,9 +166,6 @@ class News extends React.Component {
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://www.github.com">
-                        Go to GitHub.com
-                    </a>
                 </Tab>
 
             </Tabs>
