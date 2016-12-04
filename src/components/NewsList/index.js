@@ -37,7 +37,7 @@ class NewsList extends React.Component {
                         }
                         if (this.props.source == 'github') {
                             return (
-                                <NewsItem
+                                <Profile
                                     key={item.url}
                                     repo={item}
                                 />

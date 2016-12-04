@@ -120,10 +120,10 @@ export const profile = (callback) => {
                         id: product.id,
                         name: product.name,
                         tagline: product.tagline,
-                        url: 'https://www.github.com'+product.shortened_url,
+                        url: 'https://www.github.com',
                         votesCount: product.vote_count,
                         commentsCount: product.comment_count,
-                        discussionUrl: 'https://www.github.com'+product.url,
+                        discussionUrl: 'https://www.github.com',
                     });
                 }
 

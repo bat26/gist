@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {GeneralIcon, SportIcon, PoliticsIcon, TechCrunchIcon, ProfileIcon} from '../Icons';
+import {GeneralIcon, SportIcon, PoliticsIcon, TechCrunchIcon, PersonalIcon} from '../Icons';
 import {hackernews, producthunt, profile} from '../../data';
 import NewsList from '../NewsList';
 import styles from './index.css';
@@ -85,7 +85,7 @@ class News extends React.Component {
                 className={styles.tabsContainer}
                 contentContainerClassName={styles.content}
             >
-                <Tab icon={<GeneralIcon title="General" />}>
+                <Tab onClick={console.log("Click General")} icon={<GeneralIcon title="General" />}>
                     <h1 className={styles.heading}>
                         General News
                     </h1>
@@ -102,7 +102,7 @@ class News extends React.Component {
                     </a>
                 </Tab>
 
-                <Tab icon={<SportIcon title="Sport" />}>
+                <Tab onClick={console.log("Click Sport")} icon={<SportIcon title="Sport" />}>
                     <h1 className={styles.heading}>
                         Sport
                     </h1>
@@ -119,7 +119,7 @@ class News extends React.Component {
                     </a>
                 </Tab>
 
-                <Tab
+                <Tab onClick={console.log("Click Politics")}
                     icon={<PoliticsIcon title="Politics" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
@@ -140,7 +140,7 @@ class News extends React.Component {
                     </a>
                 </Tab>
 
-                <Tab
+                <Tab onClick={console.log("Click TechCrunch")}
                     icon={<TechCrunchIcon title="TechCrunch" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
@@ -161,8 +161,8 @@ class News extends React.Component {
                     </a>
                 </Tab>
 
-                <Tab
-                    icon={<ProfileIcon title="Profile" />}
+                <Tab onClick={console.log("Click Personal")}
+                    icon={<PersonalIcon title="Personal" />}
                     value="profile"
                     onActive={this.handleActiveTab.bind(this)}
                 >
