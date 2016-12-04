@@ -1,6 +1,7 @@
 import request from 'superagent';
 import localforage from 'localforage';
 import moment from 'moment';
+import parallel from 'async/parallel';
 
 const expiresDuration = 30;
 const expiresUnit = 'minutes';
@@ -58,6 +59,7 @@ export const hackernews = (callback) => {
 
 };
 
+/*
 export const producthunt = (callback) => {
 
     const baseUrl = 'https://wrapapi.com/use/sunnysingh/producthunt/todaytech/0.0.2?wrapAPIKey='+wrapApiKey;
@@ -97,6 +99,36 @@ export const producthunt = (callback) => {
     });
 
 };
+*/
+
+export const producthunt = (arg, callback) => {
+
+    const baseUrl = 'https://simpl-press-service.herokuapp.com/api/external/client/v1/getCategorizedNews/'+arg;
+
+        request
+            .get(baseUrl)
+            .end((error, response) => {
+                parallel(response.body.map(product => callback => {
+                    const summaryUrl = 'https://simpl-press-service.herokuapp.com/api/external/client/v1/getMoreNewsForThis/'+product.id;
+                    request.get(summaryUrl).end((error, response) => {
+                        const summary = response.body.summary;
+                        const sentiment = response.body.sentiment;
+                        const url = response.body.url;
+                        const reputation = response.body.reputation;
+                        callback(null, {
+                            id: product.id,
+                            title: product.title,
+                            publishDate: product.publishDate,
+                            summary: summary,
+                            sentiment: sentiment,
+                            url: url,
+                            reputation: reputation,
+                        });
+                    })
+                }), callback);
+            });
+    };
+
 
 export const profile = (callback) => {
 

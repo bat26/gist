@@ -1,7 +1,6 @@
 import React from 'react';
 import PlaceholderShimmer from '../PlaceholderShimmer';
 import HackerNewsStory from '../HackerNews/HackerNewsStory';
-import ProductHuntItem from '../ProductHunt/ProductHuntItem';
 import NewsItem from '../NewsItem/NewsItem';
 
 class NewsList extends React.Component {

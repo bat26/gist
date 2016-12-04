@@ -15,16 +15,12 @@ class News extends React.Component {
     constructor() {
         super();
 
-        console.log("THIS IS");
-        console.log(NewsCategories());
-
-
         this.state = {
             hackernews: {
                 data: [],
                 loaded: false,
             },
-            github: {
+            sports: {
                 data: [],
                 loaded: false,
             },
@@ -32,7 +28,11 @@ class News extends React.Component {
                 data: [],
                 loaded: false,
             },
-            profile: {
+            personal: {
+                data: [],
+                loaded: false,
+            },
+            politics: {
                 data: [],
                 loaded: false,
             },
@@ -40,7 +40,7 @@ class News extends React.Component {
     }
 
     componentDidMount() {
-        hackernews((data) => {
+        producthunt("news",(error, data) => {
             this.setState({
                 hackernews: {
                     data: data,
@@ -52,11 +52,15 @@ class News extends React.Component {
 
     handleActiveTab(tab) {
         switch (tab.props.value) {
-            case 'github':
-                if (!this.state.github.loaded) {
-                    github((data) => {
+            case 'politics':
+                if (!this.state.politics.loaded) {
+                    producthunt(tab.props.value,(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
                         this.setState({
-                            github: {
+                            politics: {
                                 data: data,
                                 loaded: true,
                             },
@@ -64,11 +68,47 @@ class News extends React.Component {
                     });
                 }
                 break;
-            case 'producthunt':
+            case 'sports':
+                if (!this.state.sports.loaded) {
+                    producthunt(tab.props.value,(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
+                        this.setState({
+                            sports: {
+                                data: data,
+                                loaded: true,
+                            },
+                        });
+                    });
+                }
+                break;
+            case 'tech news':
                 if (!this.state.producthunt.loaded) {
-                    producthunt((data) => {
+                    producthunt(tab.props.value,(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
                         this.setState({
                             producthunt: {
+                                data: data,
+                                loaded: true,
+                            },
+                        });
+                    });
+                }
+                break;
+            case 'personal':
+                if (!this.state.personal.loaded) {
+                    producthunt("cats",(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
+                        this.setState({
+                            personal: {
                                 data: data,
                                 loaded: true,
                             },
@@ -86,6 +126,7 @@ class News extends React.Component {
                 contentContainerClassName={styles.content}
             >
                 <Tab onClick={console.log("Click General")} icon={<GeneralIcon title="General" />} value="general">
+
                     <h1 className={styles.heading}>
                         General News
                     </h1>
@@ -99,15 +140,16 @@ class News extends React.Component {
 
                 </Tab>
 
-                <Tab onClick={console.log("Click Sport")} icon={<SportIcon title="Sport" />} value="sport">
+                <Tab onActive={this.handleActiveTab.bind(this)} icon={<SportIcon title="Sport" />} value="sports">
+
                     <h1 className={styles.heading}>
                         Sport
                     </h1>
 
                     <NewsList
                         source="hackernews"
-                        data={this.state.hackernews.data}
-                        loaded={this.state.hackernews.loaded}
+                        data={this.state.sports.data}
+                        loaded={this.state.sports.loaded}
                         className={styles.storiesContainer}
                     />
 
@@ -124,25 +166,25 @@ class News extends React.Component {
                     </h1>
 
                     <NewsList
-                        source="producthunt"
-                        data={this.state.producthunt.data}
-                        loaded={this.state.producthunt.loaded}
+                        source="hackernews"
+                        data={this.state.politics.data}
+                        loaded={this.state.politics.loaded}
                         className={styles.storiesContainer}
                     />
 
                 </Tab>
 
-                <Tab onClick={console.log("Click TechCrunch")}
-                    icon={<TechCrunchIcon title="TechCrunch" />}
-                    value="techcrunch"
+                <Tab onClick={console.log("Click Tech News")}
+                    icon={<TechCrunchIcon title="Tech News" />}
+                    value="tech news"
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
-                        Tech Crunch
+                        Tech News
                     </h1>
 
                     <NewsList
-                        source="producthunt"
+                        source="hackernews"
                         data={this.state.producthunt.data}
                         loaded={this.state.producthunt.loaded}
                         className={styles.storiesContainer}
@@ -152,7 +194,7 @@ class News extends React.Component {
 
                 <Tab onClick={console.log("Click Personal")}
                     icon={<PersonalIcon title="Personal" />}
-                    value="profile"
+                    value="personal"
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
@@ -160,9 +202,9 @@ class News extends React.Component {
                     </h1>
 
                     <NewsList
-                        source="profile"
-                        data={this.state.producthunt.data}
-                        loaded={this.state.producthunt.loaded}
+                        source="hackernews"
+                        data={this.state.personal.data}
+                        loaded={this.state.personal.loaded}
                         className={styles.storiesContainer}
                     />
 

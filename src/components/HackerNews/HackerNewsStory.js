@@ -6,26 +6,33 @@ import Toggle from 'material-ui/Toggle';
 
 const NewsArticle = (props) => {
 
+    var color =
+      props.story.sentiment === 'POSITIVE' ? 'blue' :
+      props.story.sentiment === 'NEGATIVE' ? 'red' :
+      'purple';
+
 
     return (
-        <Card>
+        <Card style={'color:' + color}>
             <CardHeader
                 title={props.story.title}
                 actAsExpander={true}
                 showExpandableButton={true}
             />
             <CardText expandable={true}>
-                <h1>Hello World</h1>
-                {props.story.by}
+                Date: {props.story.publishDate}
+            </CardText>
+             <CardText expandable={true}>
+                 Sentiment: {props.story.sentiment}
             </CardText>
             <CardText expandable={true}>
-                THIS IS MORE OF THE STORY
+                 Reputation: {props.story.reputation}
             </CardText>
             <CardText expandable={true}>
-                Even more
+                {props.story.summary}
             </CardText>
             <CardActions className={styles.actioncard} expandable={true}>
-                 <FlatButton className={styles.button} >Read More</FlatButton>
+                 <FlatButton className={styles.button} href={props.story.url}>Read More</FlatButton>
             </CardActions>
         </Card>
     );

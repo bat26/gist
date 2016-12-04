@@ -4,7 +4,7 @@
   "description": "Simple news.",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack.js --port 3000 --hot --inline --progress --colors",
+    "dev": "webpack-dev-server --config config/webpack.js --port 3007 --hot --inline --progress --colors",
     "build": "webpack --config config/webpack.js",
     "prod": "NODE_ENV=production webpack --config config/webpack.js -p",
     "predeploy": "npm run prod",
