@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {CategoryOneIcon, CategoryTwoIcon, CategoryThreeIcon, ProfileIcon} from '../Icons';
+import {CategoryOneIcon, CategoryTwoIcon, CategoryThreeIcon, CategoryFourIcon, ProfileIcon} from '../Icons';
 import {hackernews, producthunt, profile} from '../../data';
 import NewsList from '../NewsList';
 import styles from './index.css';
@@ -102,13 +102,30 @@ class News extends React.Component {
                     </a>
                 </Tab>
 
+                <Tab icon={<CategoryTwoIcon title="Category One" />}>
+                    <h1 className={styles.heading}>
+                        Sport
+                    </h1>
+
+                    <NewsList
+                        source="hackernews"
+                        data={this.state.hackernews.data}
+                        loaded={this.state.hackernews.loaded}
+                        className={styles.storiesContainer}
+                    />
+
+                    <a href="https://news.ycombinator.com/news?p=2">
+                        Go to Hacker News (page 2)
+                    </a>
+                </Tab>
+
                 <Tab
-                    icon={<CategoryTwoIcon title="Category Two" />}
+                    icon={<CategoryThreeIcon title="Category Two" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
-                        Product Hunt Tech
+                        Politics
                     </h1>
 
                     <NewsList
@@ -124,12 +141,12 @@ class News extends React.Component {
                 </Tab>
 
                 <Tab
-                    icon={<CategoryThreeIcon title="Category Three" />}
+                    icon={<CategoryFourIcon title="Category Three" />}
                     value="producthunt"
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
-                        Product Hunt Tech
+                        Tech Crunch
                     </h1>
 
                     <NewsList
@@ -150,7 +167,7 @@ class News extends React.Component {
                     onActive={this.handleActiveTab.bind(this)}
                 >
                     <h1 className={styles.heading}>
-                        GitHub
+                        Personal
                     </h1>
 
                     <NewsList
