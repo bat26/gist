@@ -4,11 +4,20 @@ import {CategoryOneIcon, CategoryTwoIcon, CategoryThreeIcon, ProfileIcon} from '
 import {hackernews, producthunt, profile} from '../../data';
 import NewsList from '../NewsList';
 import styles from './index.css';
+import NewsCategories from '../NewsCategories/NewsCategories.js';
+
+console.log("News Categories object", NewsCategories);
+
+
 
 class News extends React.Component {
 
     constructor() {
         super();
+
+        console.log("THIS IS");
+        console.log(NewsCategories());
+
 
         this.state = {
             hackernews: {
@@ -76,7 +85,6 @@ class News extends React.Component {
                 className={styles.tabsContainer}
                 contentContainerClassName={styles.content}
             >
-
                 <Tab icon={<CategoryOneIcon title="Category One" />}>
                     <h1 className={styles.heading}>
                         General News
