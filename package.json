@@ -4,11 +4,12 @@
   "description": "Simple news.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.js --port 3006 --hot --inline --progress --colors",
+    "dev": "webpack-dev-server --config config/webpack.js --port 3000 --hot --inline --progress --colors",
     "build": "webpack --config config/webpack.js",
     "prod": "NODE_ENV=production webpack --config config/webpack.js -p",
     "predeploy": "npm run prod",
     "deploy": "surge --project ./build",
+    "start": "node server.js",
     "test": "echo 'Error: no test specified'"
   },
   "homepage": "https://devne.ws/",
@@ -45,6 +46,7 @@
     "style-loader": "^0.13.0",
     "surge": "^0.18.0",
     "webpack": "^1.12.14",
+    "express" : "^4.13.4",
     "webpack-dev-server": "^1.14.1"
   }
 }
