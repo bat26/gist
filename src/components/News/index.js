@@ -1,9 +1,14 @@
 import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {NewsIcon, ProductHuntIcon} from '../Icons';
-import {hackernews, producthunt} from '../../data';
+import {GeneralIcon, SportIcon, PoliticsIcon, TechCrunchIcon, PersonalIcon} from '../Icons';
+import {hackernews, producthunt, profile} from '../../data';
 import NewsList from '../NewsList';
 import styles from './index.css';
+import NewsCategories from '../NewsCategories/NewsCategories.js';
+
+console.log("News Categories object", NewsCategories);
+
+
 
 class News extends React.Component {
 
@@ -15,7 +20,7 @@ class News extends React.Component {
                 data: [],
                 loaded: false,
             },
-            github: {
+            sports: {
                 data: [],
                 loaded: false,
             },
@@ -23,11 +28,19 @@ class News extends React.Component {
                 data: [],
                 loaded: false,
             },
+            personal: {
+                data: [],
+                loaded: false,
+            },
+            politics: {
+                data: [],
+                loaded: false,
+            },
         };
     }
 
     componentDidMount() {
-        hackernews((data) => {
+        producthunt("news",(error, data) => {
             this.setState({
                 hackernews: {
                     data: data,
@@ -39,11 +52,15 @@ class News extends React.Component {
 
     handleActiveTab(tab) {
         switch (tab.props.value) {
-            case 'github':
-                if (!this.state.github.loaded) {
-                    github((data) => {
+            case 'politics':
+                if (!this.state.politics.loaded) {
+                    producthunt(tab.props.value,(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
                         this.setState({
-                            github: {
+                            politics: {
                                 data: data,
                                 loaded: true,
                             },
@@ -51,11 +68,47 @@ class News extends React.Component {
                     });
                 }
                 break;
-            case 'producthunt':
+            case 'sports':
+                if (!this.state.sports.loaded) {
+                    producthunt(tab.props.value,(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
+                        this.setState({
+                            sports: {
+                                data: data,
+                                loaded: true,
+                            },
+                        });
+                    });
+                }
+                break;
+            case 'tech news':
                 if (!this.state.producthunt.loaded) {
-                    producthunt((data) => {
+                    producthunt(tab.props.value,(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
                         this.setState({
                             producthunt: {
+                                data: data,
+                                loaded: true,
+                            },
+                        });
+                    });
+                }
+                break;
+            case 'personal':
+                if (!this.state.personal.loaded) {
+                    producthunt("cats",(error, data) => {
+                        if (error) {
+                            console.error(error);
+                            return;
+                        }
+                        this.setState({
+                            personal: {
                                 data: data,
                                 loaded: true,
                             },
@@ -72,8 +125,8 @@ class News extends React.Component {
                 className={styles.tabsContainer}
                 contentContainerClassName={styles.content}
             >
+                <Tab onClick={console.log("Click General")} icon={<GeneralIcon title="General" />} value="general">
 
-                <Tab icon={<NewsIcon title="General News" />}>
                     <h1 className={styles.heading}>
                         General News
                     </h1>
@@ -85,36 +138,81 @@ class News extends React.Component {
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://news.ycombinator.com/news?p=2">
-                        Go to Hacker News (page 2)
-                    </a>
                 </Tab>
 
-                <Tab
-                    icon={<ProductHuntIcon title="Product Hunt Tech" />}
-                    value="producthunt"
-                    onActive={this.handleActiveTab.bind(this)}
-                >
+                <Tab onActive={this.handleActiveTab.bind(this)} icon={<SportIcon title="Sport" />} value="sports">
+
                     <h1 className={styles.heading}>
-                        Product Hunt Tech
+                        Sport
                     </h1>
 
                     <NewsList
-                        source="producthunt"
+                        source="hackernews"
+                        data={this.state.sports.data}
+                        loaded={this.state.sports.loaded}
+                        className={styles.storiesContainer}
+                    />
+
+
+                </Tab>
+
+                <Tab onClick={console.log("Click Politics")}
+                    icon={<PoliticsIcon title="Politics" />}
+                    value="politics"
+                    onActive={this.handleActiveTab.bind(this)}
+                >
+                    <h1 className={styles.heading}>
+                        Politics
+                    </h1>
+
+                    <NewsList
+                        source="hackernews"
+                        data={this.state.politics.data}
+                        loaded={this.state.politics.loaded}
+                        className={styles.storiesContainer}
+                    />
+
+                </Tab>
+
+                <Tab onClick={console.log("Click Tech News")}
+                    icon={<TechCrunchIcon title="Tech News" />}
+                    value="tech news"
+                    onActive={this.handleActiveTab.bind(this)}
+                >
+                    <h1 className={styles.heading}>
+                        Tech News
+                    </h1>
+
+                    <NewsList
+                        source="hackernews"
                         data={this.state.producthunt.data}
                         loaded={this.state.producthunt.loaded}
                         className={styles.storiesContainer}
                     />
 
-                    <a href="https://www.producthunt.com/tech">
-                        Go to Product Hunt Tech
-                    </a>
+                </Tab>
+
+                <Tab onClick={console.log("Click Personal")}
+                    icon={<PersonalIcon title="Personal" />}
+                    value="personal"
+                    onActive={this.handleActiveTab.bind(this)}
+                >
+                    <h1 className={styles.heading}>
+                        Personal
+                    </h1>
+
+                    <NewsList
+                        source="hackernews"
+                        data={this.state.personal.data}
+                        loaded={this.state.personal.loaded}
+                        className={styles.storiesContainer}
+                    />
+
                 </Tab>
 
             </Tabs>
         )
     }
-}
-;
+};
 
 export default News;

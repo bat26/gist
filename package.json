@@ -13,6 +13,7 @@
   },
   "homepage": "https://devne.ws/",
   "dependencies": {
+    "async": "^2.1.4",
     "autolinker": "^1.4.0",
     "html-escape": "^2.0.0",
     "localforage": "^1.4.2",
@@ -45,6 +46,7 @@
     "style-loader": "^0.13.0",
     "surge": "^0.18.0",
     "webpack": "^1.12.14",
+    "express": "^4.13.4",
     "webpack-dev-server": "^1.14.1"
   }
 }

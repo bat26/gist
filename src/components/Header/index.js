@@ -64,4 +64,30 @@ class Header extends React.Component {
 }
 ;
 
+//
+
+
+// function newsCategories(){
+//     var url = 'http://b7619e2d.ngrok.io/api/external/client/v1/getNewsCategories';
+//
+//     var httpRequest = new XMLHttpRequest();
+//     httpRequest.open('GET',url,false);
+//     httpRequest.send();
+//
+//
+//     console.log("Test1");
+//     console.log(httpRequest.status);
+//     console.log(httpRequest);
+//
+//     var result = JSON.parse(httpRequest.responseText);
+//
+//     console.log(result);
+//     console.log(result[1]);
+//
+//
+// };
+// console.log("HI");
+// console.log(newsCategories());
+//
+
 export default Header;
