@@ -4,7 +4,7 @@ var numberOfCategories = 0;
 
 
     function NewsCategories(){
-    var url = 'http://b7619e2d.ngrok.io/api/external/client/v1/getNewsCategories';
+    var url = 'http://localhost:9000/api/external/client/v1/getNewsCategories';
 
     var httpRequest = new XMLHttpRequest();
     httpRequest.open('GET',url,false);
